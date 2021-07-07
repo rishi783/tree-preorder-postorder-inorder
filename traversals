@@ -22,7 +22,7 @@ TreeNode* insert(TreeNode* node, int val) {
 	else node->R = insert(node->R, val);
 return node;
 }
-void inorder(TreeNode* Root)
+void inorder(TreeNode* Root)  
 {   
 // Your code here
     if(Root)
@@ -58,4 +58,6 @@ int main() {
 		Root = insert(Root, val);
 	}
 	inorder(Root);
+	preorder(Root);
+	postorder(Root);
 }
