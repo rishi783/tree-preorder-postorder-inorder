@@ -25,7 +25,7 @@ return node;
 void inorder(TreeNode* Root)  
 {   
 // Your code here
-    if(Root)
+    if(Root)       // print the left subtree Root element and the right subtree (recursion)
     {
         inorder(Root->L);
         printf("%d ",Root->x);
@@ -34,7 +34,7 @@ void inorder(TreeNode* Root)
 }
 void preorder(TreeNode *Root)
 {
-    if(Root)
+    if(Root)   // print the Root element then the left sub tree and right subtree (recursion)
     {
         printf("%d ",Root->x);
         preorder(Root->L);
@@ -43,7 +43,7 @@ void preorder(TreeNode *Root)
 }
 void postorder(TreeNode *Root)
 {
-    if(Root)
+    if(Root)  // print the left subtree and the right subtree then the root element (recursion)
     {
         postorder(Root->L);
         postorder(Root->R);
