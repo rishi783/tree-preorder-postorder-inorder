@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <math.h>
+
+struct node {
+    int data;
+    struct node *right;
+    struct node *left;
+};
+typedef struct node node;
+node *newnode(int key)
+{
+    node *temp=(node *)malloc(sizeof(node));
+    temp->data=key;
+    temp->left=NULL;
+    temp->right=NULL;
+    return temp;
+}
+node *insert(node *root,int key)    // as usual get the values and create the bst
+{
+    if(root==NULL)
+      return newnode(key);
+    else if(key<root->data)
+       root->left=insert(root->left,key);
+    else if(key>root->data)
+       root->right=insert(root->right,key);
+    return root;
+}
+node **createqueue(int *rear,int *front)  // now create a with front and rear and return it
+{
+    node **queue=(node **)malloc(sizeof(node));
+    *front=*rear=0;
+    return queue;
+}
+void enqueue(node **queue,int *rear,node *root)   //to add a element to teh queue
+{
+    queue[*rear]=root;
+    (*rear)++;
+}
+node *dequeue(node **queue,int *front)    //to remove the element in the front and return that removed element
+{
+    (*front)++;
+    return queue[*front-1];
+    
+}
+void printlevelorder(node *root)
+{
+    int rear,front;
+    node **queue=createqueue(&front,&rear);  // calling and creating a queue
+    node *temp=root;
+    while(temp)                              //until none
+    {
+        printf("%d ",temp->data);            //first print the first data in the temp node
+        if(temp->left) 
+        enqueue(queue,&rear,temp->left);     //then enqueue the left element (add it to the queue) 
+        
+        if(temp->right)
+        enqueue(queue,&rear,temp->right);    //then enqueue the right element (add it to the queue)
+        
+        temp=dequeue(queue,&front);         //remove the first (front element) and return to the temp so that in the next iteration will be printed.
+    }
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    node *root=NULL;
+    for(int i=0;i<n;i++)
+    {
+        int val;
+        scanf("%d",&val);
+        root=insert(root,val);
+    }
+    printlevelorder(root);
+}
