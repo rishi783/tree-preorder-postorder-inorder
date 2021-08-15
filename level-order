@@ -28,7 +28,7 @@ node *insert(node *root,int key)    // as usual get the values and create the bs
        root->right=insert(root->right,key);
     return root;
 }
-node **createqueue(int *rear,int *front)  // now create a with front and rear and return it
+node **createqueue(int *rear,int *front)  // now create queue a with front and rear and return it
 {
     node **queue=(node **)malloc(sizeof(node));
     *front=*rear=0;
